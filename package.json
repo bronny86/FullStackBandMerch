@@ -7,8 +7,13 @@
       "FrontEnd"
     ],
     "scripts": {
-      "start-backend": "npm --workspace BackEnd run start",
-      "start-frontend": "npm --workspace FrontEnd run dev",
-      "install-all": "npm install"
-  }
+  "start-backend": "npm --workspace BackEnd run start",
+  "start-frontend": "npm --workspace FrontEnd run dev",
+  "install-all": "npm install",
+  "install-server": "cd ./BackEnd && npm install",
+  "start-server": "cd ./BackEnd && node src/index.js",
+  "install-client": "cd ./FrontEnd && npm install",
+  "build-client": "cd ./FrontEnd && npm run build",
+  "start-client": "cd ./FrontEnd && npm run start"
+}
 }
