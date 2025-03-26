@@ -9,10 +9,6 @@ export default function UserDetail() {
             <h1>UserDetail</h1>
             <div>
                 {store.user?.username} : {store.user?.password}
-                
-            </div>
-            <div>
-                {store.token}
             </div>
         </div>
     );

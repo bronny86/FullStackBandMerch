@@ -1,26 +1,27 @@
-import { createContext } from "react"
+import { createContext } from "react";
 
-export const GlobalContext = createContext(null)
+export const GlobalContext = createContext(null);
 
 function globalReducer(state, action) {
-    switch(action.type) {
+    switch (action.type) {
         case 'setToken': {
-            localStorage.setItem("token", action.data)
+            localStorage.setItem("token", action.data);
             return {
                 ...state,
                 token: action.data
-            }
+            };
         }
         case 'setUser': {
-            localStorage.setItem("user", action.data)
+            // Ensure the user object is stringified before saving to localStorage
+            localStorage.setItem("user", JSON.stringify(action.data));
             return {
                 ...state,
                 user: action.data
-            }
+            };
         }
         default:
-            return state
+            return state;
     }
 }
 
-export default globalReducer
+export default globalReducer;

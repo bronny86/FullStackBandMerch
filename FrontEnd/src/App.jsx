@@ -24,8 +24,19 @@ import { GetStarted } from "./pages/GetStarted";
 
 const initialState = {
     token: localStorage.getItem("token") ?? "",
-    user: JSON.parse(localStorage.getItem("user")) ?? {},
+    user: (() => {
+        try {
+            // Safely parse the user object from localStorage
+            return JSON.parse(localStorage.getItem("user")) ?? {};
+        } catch (error) {
+            console.error("Error parsing user from localStorage:", error);
+            // Fallback to an empty object if parsing fails
+            return {};
+        }
+    })(),
 };
+
+
 
 function AppContent() {
     const location = useLocation();
