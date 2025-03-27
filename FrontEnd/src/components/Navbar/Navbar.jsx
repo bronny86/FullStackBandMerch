@@ -43,6 +43,9 @@ const NavbarComponent = () => {
                         <NavBtnLink to="/signup">Sign Up</NavBtnLink>
                         <NavBtnLink to="/login">Login</NavBtnLink>
                         <NavBtnLink to="/cart">Cart</NavBtnLink>
+
+                        {/* New Admin Orders Link */}
+                        <NavBtnLink to="/admin/orders">Admin Orders</NavBtnLink> {/* Add this link */}
                     </NavMenuRight>
                 </NavMenu>
 
@@ -82,6 +85,15 @@ const NavbarComponent = () => {
                             onClick={closeDropdown}
                         >
                             Cart
+                        </NavLink>
+
+                        {/* New Admin Orders Link in dropdown */}
+                        <NavLink
+                            to="/admin/orders"
+                            activestyle={{ fontWeight: "bold", color: "red" }}
+                            onClick={closeDropdown}
+                        >
+                            Admin Orders
                         </NavLink>
                     </DropdownMenu>
                 )}

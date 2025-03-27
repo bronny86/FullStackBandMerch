@@ -3,25 +3,28 @@ import styled from "styled-components";
 import { SignUpForm } from "../components/SignUpForm";
 
 const FormContainer = styled.div`
-    width: 90%; /* Take up 90% of the screen width */
-    max-width: 800px; /* Limit the maximum width */
-    margin: 50px auto; /* Center the form horizontally and add vertical spacing */
-    padding: 20px; /* Add padding for spacing */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better visibility */
-    background-color: #fff; /* Optional: Add a background color */
-    border-radius: 8px; /* Optional: Add rounded corners */
+    width: 90%;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 8px;
 
     @media screen and (max-width: 768px) {
-        width: 95%; /* Take up more space on smaller screens */
-        padding: 15px; /* Reduce padding for smaller screens */
+        width: 95%;
+        padding: 15px;
     }
 `;
 
-export function SignUp() {
+// Change to default export
+const SignUp = () => {
     return (
         <FormContainer>
             <h1>Sign Up</h1>
             <SignUpForm />
         </FormContainer>
     );
-}
+};
+
+export default SignUp;  // Default export
