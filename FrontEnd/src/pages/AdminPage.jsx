@@ -1,32 +1,44 @@
-// src/pages/AdminPage.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { NavBtnLink } from '../components/Navbar/NavbarElements'; // Import NavBtnLink
 
-const AdminContainer = styled.div`
-  padding: 20px;
-`;
+const AdminPage = () => {
+  return (
+    <div style={{ padding: '20px' }}>
+      <h1>Admin Dashboard</h1>
+      <p>Welcome to the admin panel. You can manage orders, stock, clipart, and fonts here:</p>
+      <ButtonList>
+        <ButtonLink to="/admin/orders">Manage Orders</ButtonLink>
+        <ButtonLink to="/admin/stock">Manage Stock</ButtonLink>
+        <ButtonLink to="/admin/clipart">Manage Clipart</ButtonLink>
+        <ButtonLink to="/admin/fonts">Manage Fonts</ButtonLink> {/* Added the link to Admin Fonts */}
+      </ButtonList>
+    </div>
+  );
+};
 
+// Styled Components for buttons
 const ButtonList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Ensuring proper spacing between the buttons */
+  gap: 10px;
   margin-top: 20px;
 `;
 
-const AdminPage = () => {
-    return (
-        <AdminContainer>
-            <h1>Admin Dashboard</h1>
-            {/* Buttons styled like Navbar buttons */}
-            <ButtonList>
-                <NavBtnLink to="/admin/orders">Admin Orders</NavBtnLink>
-                <NavBtnLink to="/admin/stock">Admin Stock</NavBtnLink>
-                <NavBtnLink to="/admin/clipart">Admin Clipart</NavBtnLink>
-            </ButtonList>
-        </AdminContainer>
-    );
-};
+const ButtonLink = styled(Link)`
+  background-color: #256ce1;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+  font-size: 1rem;
+  width: 100%;
+  cursor: pointer;
+  &:hover {
+    background-color: #1e56a0;
+  }
+`;
 
 export default AdminPage;
