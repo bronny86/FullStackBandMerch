@@ -1,54 +1,32 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";  // Import styled-components for layout
+// src/pages/AdminPage.jsx
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { NavBtnLink } from '../components/Navbar/NavbarElements'; // Import NavBtnLink
 
-// Admin page wrapper
-const AdminWrapper = styled.div`
+const AdminContainer = styled.div`
+  padding: 20px;
+`;
+
+const ButtonList = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  height: 100vh;
-  background-color: #f4f4f4;  // Set background color
-`;
-
-const AdminHeader = styled.h1`
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-`;
-
-const AdminLinksContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 30px;
+  gap: 20px; /* Ensuring proper spacing between the buttons */
   margin-top: 20px;
 `;
 
-const AdminLink = styled(Link)`
-  font-size: 1.5rem;
-  padding: 10px 20px;
-  text-decoration: none;
-  color: #fff;
-  background-color: #256ce1;
-  border-radius: 5px;
-
-  &:hover {
-    background-color: #fff;
-    color: #256ce1;
-    border: 1px solid #256ce1;
-  }
-`;
-
 const AdminPage = () => {
-  return (
-    <AdminWrapper>
-      <AdminHeader>Admin Dashboard</AdminHeader>
-      <AdminLinksContainer>
-        <AdminLink to="/admin/orders">Admin Orders</AdminLink>
-        <AdminLink to="/admin/stock">Admin Stock</AdminLink>
-      </AdminLinksContainer>
-    </AdminWrapper>
-  );
+    return (
+        <AdminContainer>
+            <h1>Admin Dashboard</h1>
+            {/* Buttons styled like Navbar buttons */}
+            <ButtonList>
+                <NavBtnLink to="/admin/orders">Admin Orders</NavBtnLink>
+                <NavBtnLink to="/admin/stock">Admin Stock</NavBtnLink>
+                <NavBtnLink to="/admin/clipart">Admin Clipart</NavBtnLink>
+            </ButtonList>
+        </AdminContainer>
+    );
 };
 
 export default AdminPage;

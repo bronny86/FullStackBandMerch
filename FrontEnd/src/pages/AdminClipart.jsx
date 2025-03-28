@@ -1,158 +1,162 @@
+// src/pages/AdminClipart.jsx
 import React, { useState, useEffect } from 'react';
 import api from '../api';  // Assuming api is set up to communicate with backend
 import styled from 'styled-components';
 
-const AdminStock = () => {
-  const [stockItems, setStockItems] = useState([]);
-  const [newStock, setNewStock] = useState({
-    color: '',
-    size: '',
-    material: '',
-    price: 0,
-    stockQuantity: 0,
+const AdminClipart = () => {
+  const [cliparts, setCliparts] = useState([]);
+  const [newClipart, setNewClipart] = useState({
+    clipartName: '',
+    category: '',
+    creator: '',
+    clipartCost: '',
+    colorOptions: ''
   });
   const [editMode, setEditMode] = useState(false);
   const [editId, setEditId] = useState(null);
   const [error, setError] = useState(null);
 
-  // Fetch stock items from the backend
-  const fetchStockItems = async () => {
+  // Fetch all cliparts from the backend
+  const fetchCliparts = async () => {
     try {
-      const response = await api.get('/stocks');
-      setStockItems(response.data);
+      const response = await api.get('/cliparts');
+      setCliparts(response.data);
       setError(null);
     } catch (err) {
-      setError('Failed to fetch stock items.');
+      setError('Failed to fetch cliparts.');
     }
   };
 
   useEffect(() => {
-    fetchStockItems();
+    fetchCliparts();
   }, []);
 
-  // Handle form submission for creating/updating stock items
+  // Handle form submission for creating/updating clipart
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
       if (editMode) {
-        // Update stock item
-        await api.put(`/stocks/id=${editId}`, newStock);
+        // Update clipart item
+        await api.put(`/cliparts/id=${editId}`, newClipart);
       } else {
-        // Create new stock item
-        await api.post('/stocks', newStock);
+        // Create new clipart item
+        await api.post('/cliparts', newClipart);
       }
 
-      // Refresh stock items list after adding or updating
-      fetchStockItems();
+      // Refresh cliparts list after adding or updating
+      fetchCliparts();
 
       // Reset the form
-      setNewStock({ color: '', size: '', material: '', price: 0, stockQuantity: 0 });
+      setNewClipart({ clipartName: '', category: '', creator: '', clipartCost: '', colorOptions: '' });
       setEditMode(false);
       setEditId(null);
     } catch (err) {
-      setError('Failed to submit stock data.');
+      setError('Failed to submit clipart data.');
     }
   };
 
   // Handle delete operation
   const handleDelete = async (id) => {
     try {
-      await api.delete(`/stocks/id=${id}`);
-      fetchStockItems(); // Refresh the list after deletion
+      await api.delete(`/cliparts/id=${id}`);
+      fetchCliparts(); // Refresh the list after deletion
     } catch (err) {
-      setError('Failed to delete stock item.');
+      setError('Failed to delete clipart.');
     }
   };
 
   // Handle edit operation
-  const handleEdit = (stock) => {
-    setNewStock({
-      color: stock.color,
-      size: stock.size,
-      material: stock.material,
-      price: stock.price,
-      stockQuantity: stock.stockQuantity,
+  const handleEdit = (clipart) => {
+    setNewClipart({
+      clipartName: clipart.clipartName,
+      category: clipart.category,
+      creator: clipart.creator,
+      clipartCost: clipart.clipartCost,
+      colorOptions: clipart.colorOptions,
     });
     setEditMode(true);
-    setEditId(stock._id);
+    setEditId(clipart._id);
   };
 
   return (
     <Container>
-      <h1>Admin Stock</h1>
+      <h1>Admin Clipart</h1>
 
       {error && <Error>{error}</Error>}
 
       <Form onSubmit={handleSubmit}>
-        <h3>{editMode ? 'Update Stock' : 'Add New Stock'}</h3>
+        <h3>{editMode ? 'Update Clipart' : 'Add New Clipart'}</h3>
         <InputWrapper>
-          <label>Color</label>
+          <label>Clipart Name</label>
           <input
             type="text"
-            value={newStock.color}
-            onChange={(e) => setNewStock({ ...newStock, color: e.target.value })}
+            value={newClipart.clipartName}
+            onChange={(e) => setNewClipart({ ...newClipart, clipartName: e.target.value })}
           />
         </InputWrapper>
         <InputWrapper>
-          <label>Size</label>
+          <label>Category</label>
           <input
             type="text"
-            value={newStock.size}
-            onChange={(e) => setNewStock({ ...newStock, size: e.target.value })}
+            value={newClipart.category}
+            onChange={(e) => setNewClipart({ ...newClipart, category: e.target.value })}
           />
         </InputWrapper>
         <InputWrapper>
-          <label>Material</label>
+          <label>Creator</label>
           <input
             type="text"
-            value={newStock.material}
-            onChange={(e) => setNewStock({ ...newStock, material: e.target.value })}
+            value={newClipart.creator}
+            onChange={(e) => setNewClipart({ ...newClipart, creator: e.target.value })}
           />
         </InputWrapper>
         <InputWrapper>
-          <label>Price</label>
+          <label>Cost</label>
           <input
             type="number"
-            value={newStock.price}
-            onChange={(e) => setNewStock({ ...newStock, price: e.target.value })}
+            value={newClipart.clipartCost}
+            onChange={(e) => setNewClipart({ ...newClipart, clipartCost: e.target.value })}
           />
         </InputWrapper>
         <InputWrapper>
-          <label>Stock Quantity</label>
+          <label>Color Options</label>
           <input
-            type="number"
-            value={newStock.stockQuantity}
-            onChange={(e) => setNewStock({ ...newStock, stockQuantity: e.target.value })}
+            type="text"
+            value={newClipart.colorOptions}
+            onChange={(e) => setNewClipart({ ...newClipart, colorOptions: e.target.value })}
           />
         </InputWrapper>
-        <Button type="submit">{editMode ? 'Update Stock' : 'Add Stock'}</Button>
+
+        <Button type="submit">{editMode ? 'Update Clipart' : 'Add Clipart'}</Button>
       </Form>
 
       <TableWrapper>
-        <h2>Stock List</h2>
+        <h2>Cliparts List</h2>
         <table>
           <thead>
             <tr>
-              <th>Color</th>
-              <th>Size</th>
-              <th>Material</th>
-              <th>Price</th>
-              <th>Stock Quantity</th>
+              <th>Clipart Name</th>
+              <th>Category</th>
+              <th>Creator</th>
+              <th>Cost</th>
+              <th>Color Options</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {stockItems.map((stock) => (
-              <tr key={stock._id}>
-                <td>{stock.color}</td>
-                <td>{stock.size}</td>
-                <td>{stock.material}</td>
-                <td>${stock.price}</td>
-                <td>{stock.stockQuantity}</td>
+            {cliparts.map((clipart) => (
+              <tr key={clipart._id}>
+                <td>{clipart.clipartName}</td>
+                <td>{clipart.category}</td>
+                <td>{clipart.creator}</td>
+                <td>${clipart.clipartCost}</td>
+                <td>{clipart.colorOptions}</td>
                 <td>
-                  <ActionButton onClick={() => handleEdit(stock)}>Edit</ActionButton>
-                  <ActionButton onClick={() => handleDelete(stock._id)} delete>Delete</ActionButton>
+                  <ActionButton onClick={() => handleEdit(clipart)}>Edit</ActionButton>
+                  <ActionButton onClick={() => handleDelete(clipart._id)} delete>
+                    Delete
+                  </ActionButton>
                 </td>
               </tr>
             ))}
@@ -163,7 +167,7 @@ const AdminStock = () => {
   );
 };
 
-export default AdminStock;
+export default AdminClipart;
 
 // Styled Components
 const Container = styled.div`

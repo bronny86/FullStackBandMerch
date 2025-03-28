@@ -1,9 +1,8 @@
-import React from "react";
+// src/pages/GetStarted.jsx
+import React from 'react';
 
-export function GetStarted() { // Named export
-    return (
-        <div>
-            <h1>Get Started</h1>
-        </div>
-    );
-}
+const GetStarted = () => {
+  return <div>Welcome to the Get Started Page!</div>;
+};
+
+export default GetStarted; // Make sure this is a default export
