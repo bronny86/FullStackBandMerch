@@ -14,6 +14,8 @@ const clipartRoutes = require('./routes/clipartRoutes.js');  // Import clipart r
 const designRoutes = require('./routes/designRoutes.js');  // Import design routes
 const stockRoutes = require('./routes/stockRoutes.js');  // Import stock routes
 const fontRoutes = require('./routes/fontRoutes.js');  // Import font routes
+const CustomTShirtDesign = require('./routes/customtshirtdesignRoutes.js')
+
 
 const app = express();
 const HOST = process.env.HOST || 'localhost';
@@ -50,6 +52,7 @@ app.use('/cliparts', clipartRoutes);  // Use the clipart routes
 app.use('/designs', designRoutes);  // Use the design routes
 app.use('/stocks', stockRoutes);  // Use the stock routes
 app.use('/fonts', fontRoutes);  // Use the font routes
+app.use('/custom-designs', CustomTShirtDesign);
 
 // Default route for the root path returning JSON
 app.get('/', (req, res) => {

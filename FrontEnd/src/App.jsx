@@ -11,6 +11,7 @@ import Navbar from "./components/Navbar/Navbar";
 import AdminPage from "./pages/AdminPage"; // Import AdminPage here
 import GetStarted from "./pages/GetStarted";
 import Cart from "./pages/Cart";
+import AdminDesigns from './pages/AdminDesigns';
 
 const App = () => {
   return (
@@ -27,6 +28,8 @@ const App = () => {
         <Route path="/admin/fonts" element={<AdminFonts />} />
         <Route path="/GetStarted" element={<GetStarted />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/admin/designs" element={<AdminDesigns />} />
+
       </Routes>
     </Router>
   );
