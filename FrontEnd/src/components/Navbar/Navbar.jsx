@@ -1,105 +1,62 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom"; // Import NavLink
+import { NavLink } from "react-router-dom";
 import {
-    Nav, // Import Nav
-    Bars, // Import Bars
-    NavMenu, // Import NavMenu
-    NavMenuLeft, // Import NavMenuLeft
-    NavMenuRight, // Import NavMenuRight
-    NavBtnLink, // Import NavBtnLink
-    DropdownMenu, // Import DropdownMenu
+  Nav,
+  Bars,
+  NavMenu,
+  NavMenuLeft,
+  NavMenuRight,
+  NavBtnLink,
+  DropdownMenu,
+  NavButton,  // Use the same NavButton styling for all buttons
 } from "./NavbarElements"; // Adjust the path if necessary
 
 const NavbarComponent = () => {
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-    const toggleDropdown = () => {
-        console.log("Hamburger menu clicked");
-        setIsDropdownOpen(!isDropdownOpen);
-    };
+  const toggleDropdown = () => {
+    console.log("Hamburger menu clicked");
+    setIsDropdownOpen(!isDropdownOpen);
+  };
 
-    const closeDropdown = () => {
-        setIsDropdownOpen(false); // Close the dropdown menu
-    };
+  const closeDropdown = () => {
+    setIsDropdownOpen(false); // Close the dropdown menu
+  };
 
-    return (
-        <>
-            <Nav>
-                <Bars onClick={toggleDropdown} /> {/* Hamburger menu toggle */}
+  return (
+    <>
+      <Nav>
+        <Bars onClick={toggleDropdown} /> {/* Hamburger menu toggle */}
 
-                <NavMenu>
-                    {/* Left-aligned items */}
-                    <NavMenuLeft>
-                        <NavLink to="/" activestyle={{ fontWeight: "bold", color: "red" }}>
-                            Home
-                        </NavLink>
-                        <NavLink to="/GetStarted" activestyle={{ fontWeight: "bold", color: "red" }}>
-                            Get Started
-                        </NavLink>
-                    </NavMenuLeft>
+        <NavMenu>
+          {/* Left-aligned items */}
+          <NavMenuLeft>
+            <NavButton onClick={() => window.location.href = '/'}>Home</NavButton>
+            <NavButton onClick={() => window.location.href = '/GetStarted'}>Get Started</NavButton>
+          </NavMenuLeft>
 
-                    {/* Right-aligned items */}
-                    <NavMenuRight>
-                        <NavBtnLink to="/signup">Sign Up</NavBtnLink>
-                        <NavBtnLink to="/login">Login</NavBtnLink>
-                        <NavBtnLink to="/cart">Cart</NavBtnLink>
+          {/* Right-aligned items */}
+          <NavMenuRight>
+            <NavBtnLink to="/signup">Sign Up</NavBtnLink>
+            <NavBtnLink to="/login">Login</NavBtnLink>
+            <NavBtnLink to="/cart">Cart</NavBtnLink>
+            <NavButton onClick={() => window.location.href = '/admin'}>Admin</NavButton>
+          </NavMenuRight>
+        </NavMenu>
 
-                        {/* New Admin Orders Link */}
-                        <NavBtnLink to="/admin/orders">Admin Orders</NavBtnLink> {/* Add this link */}
-                    </NavMenuRight>
-                </NavMenu>
-
-                {isDropdownOpen && (
-                    <DropdownMenu>
-                        <NavLink
-                            to="/"
-                            activestyle={{ fontWeight: "bold", color: "red" }}
-                            onClick={closeDropdown}
-                        >
-                            Home
-                        </NavLink>
-                        <NavLink
-                            to="/GetStarted"
-                            activestyle={{ fontWeight: "bold", color: "red" }}
-                            onClick={closeDropdown}
-                        >
-                            Get Started
-                        </NavLink>
-                        <NavLink
-                            to="/signup"
-                            activestyle={{ fontWeight: "bold", color: "red" }}
-                            onClick={closeDropdown}
-                        >
-                            Sign Up
-                        </NavLink>
-                        <NavLink
-                            to="/login"
-                            activestyle={{ fontWeight: "bold", color: "red" }}
-                            onClick={closeDropdown}
-                        >
-                            Login
-                        </NavLink>
-                        <NavLink
-                            to="/cart"
-                            activestyle={{ fontWeight: "bold", color: "red" }}
-                            onClick={closeDropdown}
-                        >
-                            Cart
-                        </NavLink>
-
-                        {/* New Admin Orders Link in dropdown */}
-                        <NavLink
-                            to="/admin/orders"
-                            activestyle={{ fontWeight: "bold", color: "red" }}
-                            onClick={closeDropdown}
-                        >
-                            Admin Orders
-                        </NavLink>
-                    </DropdownMenu>
-                )}
-            </Nav>
-        </>
-    );
+        {isDropdownOpen && (
+          <DropdownMenu>
+            <NavButton onClick={() => window.location.href = '/'}>Home</NavButton>
+            <NavButton onClick={() => window.location.href = '/GetStarted'}>Get Started</NavButton>
+            <NavButton onClick={() => window.location.href = '/signup'}>Sign Up</NavButton>
+            <NavButton onClick={() => window.location.href = '/login'}>Login</NavButton>
+            <NavButton onClick={() => window.location.href = '/cart'}>Cart</NavButton>
+            <NavButton onClick={() => window.location.href = '/admin'}>Admin</NavButton>
+          </DropdownMenu>
+        )}
+      </Nav>
+    </>
+  );
 };
 
 export default NavbarComponent;

@@ -1,40 +1,28 @@
-import React from "react";
-import "./styles.css";
-import Navbar from "./components/Navbar/Navbar";  // Ensure Navbar is imported correctly
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
+// src/App.jsx
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Updated import for v6
+import Navbar from './components/Navbar/Navbar'; // Ensure the correct path
+import AdminPage from './pages/AdminPage'; 
+import AdminOrders from './pages/AdminOrders';
+import AdminStock from './pages/AdminStock';
+import Home from './pages/Home';
+import SignUp from './pages/SignUp';
+import Login from './pages/Login';
 
-import Home from "./pages/Home";    // Note the case sensitivity, should match the file name
-import Cart from "./pages/Cart";
-import SignUp from "./pages/SignUp";
-import LogIn from "./pages/Login";   // Ensure correct import with proper case
-import AdminOrders from "./pages/AdminOrders";
-
-const AppContent = () => {
-  return (
-    <div id="root">
-      <Navbar /> {/* Ensure Navbar is included */}
-      <Routes>
-        {/* Route definitions */}
-        <Route path="/" element={<Home />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/login" element={<LogIn />} />
-        <Route path="/admin/orders" element={<AdminOrders />} />
-      </Routes>
-    </div>
-  );
-};
-
-function App() {
+const App = () => {
   return (
     <Router>
-      <AppContent />
+      <Navbar /> {/* Navbar should be rendered globally */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/admin/orders" element={<AdminOrders />} />
+        <Route path="/admin/stock" element={<AdminStock />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
     </Router>
   );
-}
+};
 
 export default App;
