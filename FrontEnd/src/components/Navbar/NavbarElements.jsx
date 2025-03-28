@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import { NavLink as RouterNavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
+// Bars (Hamburger menu icon for mobile)
 export const Bars = styled.div`
     display: none;
     font-size: 2rem;
@@ -9,7 +10,7 @@ export const Bars = styled.div`
     width: 30px;
     height: 30px;
     text-align: center;
-    line-height: 30px; /* Vertically center the content */
+    line-height: 30px;
 
     @media screen and (max-width: 768px) {
         display: block;
@@ -20,47 +21,49 @@ export const Bars = styled.div`
     }
 `;
 
+// Main Nav container
 export const Nav = styled.nav`
     display: flex;
-    justify-content: space-between; /* Space out the navbar sections */
+    justify-content: space-between;
     align-items: center;
     height: 80px;
-    background: #333; /* Navbar background color */
-    padding: 0 20px; /* Add padding to the left and right */
+    background: #333;
+    padding: 0 20px;
     color: #fff;
-    width: 100%; /* Ensure the navbar spans the full width of the screen */
-    position: fixed; /* Keep the navbar at the top */
+    width: 100%;
+    position: fixed;
     top: 0;
     left: 0;
-    z-index: 1000; /* Ensure it stays above other elements */
-
+    z-index: 1000;
 
     @media screen and (max-width: 768px) {
         justify-content: space-between;
     }
 `;
 
+// Navbar menu container
 export const NavMenu = styled.div`
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Space out the left and right sections */
-    width: 100%; /* Ensure the menu spans the full width */
-    flex-grow: 1; /* Allow the menu to take up available space */
-    margin-left: 20px; /* Add spacing between the menu and the hamburger icon */
+    justify-content: space-between;
+    width: 100%;
+    flex-grow: 1;
+    margin-left: 20px;
 
     @media screen and (max-width: 768px) {
-        display: none; /* Hide the full navbar on smaller screens */
+        display: none;
     }
 `;
 
+// Left-aligned menu
 export const NavMenuLeft = styled.div`
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* Align items to the left */
-    
-    gap: 20px; /* Add spacing between items */
+    justify-content: flex-start;
+    gap: 20px;
 `;
 
+// Right-aligned menu
 export const NavMenuRight = styled.div.attrs(() => ({
     className: "nav-menu-right",
 }))`
@@ -70,16 +73,14 @@ export const NavMenuRight = styled.div.attrs(() => ({
     gap: 10px;
     padding-right: 10px;
     flex-shrink: 0;
-    max-width: 100%;
 `;
 
-
-
+// Dropdown menu for mobile view
 export const DropdownMenu = styled.div`
-    position: fixed; /* Position the menu relative to the viewport */
-    top: 50%; /* Center vertically */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Adjust for the element's size */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -88,7 +89,7 @@ export const DropdownMenu = styled.div`
     display: flex;
     flex-direction: column;
     padding: 20px;
-    width: 300px; /* Set a fixed width for the menu */
+    width: 300px;
     text-align: center;
 
     a {
@@ -107,17 +108,36 @@ export const DropdownMenu = styled.div`
     }
 `;
 
-export const NavBtn = styled.div`
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Add spacing between buttons */
+// Styled button that behaves like a Link (for navigation buttons in the Navbar)
+export const LinkButton = styled(Link)`
+    background: #256ce1;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    display: inline-block;
+    margin-top: 20px;
+    text-align: center;
 
-    @media screen and (max-width: 768px) {
-        display: none; /* Hide buttons on smaller screens */
+    &:hover {
+        background: #1e56a0;
     }
 `;
 
-export const NavBtnLink = styled(RouterNavLink)`
+// Button container for larger screens (right section of the Navbar)
+export const NavBtn = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    @media screen and (max-width: 768px) {
+        display: none;
+    }
+`;
+
+// Individual Nav button links
+export const NavBtnLink = styled(Link)`
     background: #256ce1;
     color: #fff;
     padding: 10px 20px;
@@ -131,3 +151,4 @@ export const NavBtnLink = styled(RouterNavLink)`
         border: 1px solid #256ce1;
     }
 `;
+

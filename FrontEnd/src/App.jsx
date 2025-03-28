@@ -1,40 +1,39 @@
-import React from "react";
-import "./styles.css";
-import Navbar from "./components/Navbar/Navbar";  // Ensure Navbar is imported correctly
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from "react-router-dom";
-
-import Home from "./pages/Home";    // Note the case sensitivity, should match the file name
-import Cart from "./pages/Cart";
-import SignUp from "./pages/SignUp";
-import LogIn from "./pages/Login";   // Ensure correct import with proper case
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AdminOrders from "./pages/AdminOrders";
+import AdminStock from "./pages/AdminStock";
+import AdminClipart from "./pages/AdminClipart";
+import AdminFonts from "./pages/AdminFonts";
+import LogInPage from "./pages/Login";
+import SignUp from "./pages/SignUp";
+import Home from "./pages/Home";
+import Navbar from "./components/Navbar/Navbar";
+import AdminPage from "./pages/AdminPage"; // Import AdminPage here
+import GetStarted from "./pages/GetStarted";
+import Cart from "./pages/Cart";
+import AdminDesigns from './pages/AdminDesigns';
+import AdminPayments from './pages/AdminPayments';
 
-const AppContent = () => {
-  return (
-    <div id="root">
-      <Navbar /> {/* Ensure Navbar is included */}
-      <Routes>
-        {/* Route definitions */}
-        <Route path="/" element={<Home />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/login" element={<LogIn />} />
-        <Route path="/admin/orders" element={<AdminOrders />} />
-      </Routes>
-    </div>
-  );
-};
-
-function App() {
+const App = () => {
   return (
     <Router>
-      <AppContent />
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<LogInPage />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/admin/orders" element={<AdminOrders />} />
+        <Route path="/admin/stock" element={<AdminStock />} />
+        <Route path="/admin/clipart" element={<AdminClipart />} />
+        <Route path="/admin/fonts" element={<AdminFonts />} />
+        <Route path="/GetStarted" element={<GetStarted />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/admin/designs" element={<AdminDesigns />} />
+        <Route path="/admin/payments" element={<AdminPayments />} />
+      </Routes>
     </Router>
   );
-}
+};
 
 export default App;
