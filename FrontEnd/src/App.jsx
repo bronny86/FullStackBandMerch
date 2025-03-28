@@ -12,6 +12,7 @@ import AdminPage from "./pages/AdminPage"; // Import AdminPage here
 import GetStarted from "./pages/GetStarted";
 import Cart from "./pages/Cart";
 import AdminDesigns from './pages/AdminDesigns';
+import AdminPayments from './pages/AdminPayments';
 
 const App = () => {
   return (
@@ -29,7 +30,7 @@ const App = () => {
         <Route path="/GetStarted" element={<GetStarted />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/admin/designs" element={<AdminDesigns />} />
-
+        <Route path="/admin/payments" element={<AdminPayments />} />
       </Routes>
     </Router>
   );

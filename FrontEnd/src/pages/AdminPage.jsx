@@ -13,6 +13,7 @@ const AdminPage = () => {
         <LinkButton to="/admin/clipart">Admin Clipart</LinkButton>
         <LinkButton to="/admin/fonts">Admin Fonts</LinkButton>
         <LinkButton to="/admin/designs">Admin Designs</LinkButton>
+        <LinkButton to="/admin/payments">Admin Payments</LinkButton>
       </div>
     </div>
   );
